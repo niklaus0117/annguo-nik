@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.annguo.clientsoft.customer.dao.CustomerLoginDao">
+ 	<resultMap id="BaseResultMap" type="com.annguo.clientsoft.customer.entity.CustomerLogin">
+ 		<id column="CUSTOMER_ID" jdbcType="INTEGER" property="customerId" />
+ 		<result column="LOGIN_NAME" jdbcType="VARCHAR" property="loginName" />
+ 		<result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+ 		<result column="USER_STATS" jdbcType="TINYINT" property="userStats" />
+ 		<result column="MODIFIED_TIME" jdbcType="TIMESTAMP" property="modifiedTime" />
+ 	</resultMap>
+ 	
+ 	<sql id="Base_Column_List">
+    	CUSTOMER_ID, LOGIN_NAME, PASSWORD, USER_STATS, MODIFIED_TIME
+  	</sql>
+  	
+  	<select id="validaCustomerLogin" resultMap="BaseResultMap" parameterType="java.lang.String">
+  		SELECT <include refid="Base_Column_List" />
+  		FROM CUSTOMER_LOGIN WHERE LOGIN_NAME=#{loginName}
+  	</select>
+  
+</mapper>
